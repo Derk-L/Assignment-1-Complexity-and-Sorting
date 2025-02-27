@@ -71,16 +71,23 @@ import java.util.*;
             }
            
             private static Shape parseShape(String line) {
-                String[] parts = line.split(",");
+                String[] parts = line.trim().split("\\s+"); 
+                if (parts.length < 3) {
+                    throw new IllegalArgumentException("Invalid shape format: " + line);
+                }
+
                 String type = parts[0];
                 double height = Double.parseDouble(parts[1]);
                 double base = Double.parseDouble(parts[2]);
-               
+
                 switch (type.toLowerCase()) {
                     case "cone": return new Cone(height, base);
                     case "cylinder": return new Cylinder(height, base);
                     case "squareprism": return new SquarePrism(height, base);
                     case "triangularprism": return new TriangularPrism(height, base);
+                    case "pentagonalprism": return new PentagonalPrism(height, base);  
+                    case "octagonalprism": return new OctagonalPrism(height, base);    
+                    case "pyramid": return new Pyramid(height, base);  
                     default: throw new IllegalArgumentException("Unknown shape: " + type);
                 }
             }
