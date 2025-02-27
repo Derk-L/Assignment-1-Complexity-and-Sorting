@@ -23,6 +23,7 @@ import java.util.*;
  
         public class AppDriver {
             public static void main(String[] args) {
+            	
                 if (args.length < 3) {
                     System.out.println("Usage: java AppDriver <filename> <compareType> <sortType>");
                     return;
@@ -86,9 +87,9 @@ import java.util.*;
            
             private static Comparator<Shape> getComparator(char compareType) {
                 switch (compareType) {
-                    case 'h': return Comparator.naturalOrder();
-                    case 'b': return new BaseAreaComparator();
-                    case 'v': return new VolumeComparator();
+                    case 'h': return (s1, s2) -> Double.compare(s2.getHeight(), s1.getHeight()); 
+                    case 'b': return new BaseAreaComparator();  
+                    case 'v': return new VolumeComparator();   
                     default: return null;
                 }
             }
@@ -104,4 +105,5 @@ import java.util.*;
                     default: System.out.println("Invalid sorting type.");
                 }
             }
+            
         }
