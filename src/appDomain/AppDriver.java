@@ -28,6 +28,8 @@ public class AppDriver {
         Character compareType = null;
         Character sortType = null;
         
+        boolean displaySorted = true;
+        
         // Parse all command line arguments (order insensitive)
         for (String arg : args) {
             String lowerArg = arg.toLowerCase();
@@ -62,11 +64,13 @@ public class AppDriver {
         if(compareType != 'h' && compareType != 'a' && compareType != 'v' ) 
         {
         	System.out.println("The compare type " + compareType + " is not a valid option. Valid options are Height (h), base area (a), volume (v).");
+        	displaySorted = false;
         }
         
         if(sortType != 'b' && sortType != 's' && sortType != 'i' && sortType != 'm' && sortType != 'q' && sortType != 'h') 
         {
         	System.out.println("The sort type " + sortType + " is not a valid option. Valid options are Bubble (b), Selection (s), Insertion (i), Merge (m), Quick (q), Heap (z).");
+        	displaySorted = false;
         }
         
         // Load shapes from file
@@ -88,19 +92,22 @@ public class AppDriver {
         applySortingAlgorithm(shapes, sortType, comparator);
         long endTime = System.nanoTime();
         
-        // Print only: first, every 1000th, and the last sorted shape
-        System.out.println("Selected Sorted Shapes (first element, every 1000th, and last element):");
-        int size = shapes.size();
-        for (int i = 0; i < size; i++) {
-            if (i == 0 || i % 1000 == 0 || i == size - 1) {
-                System.out.println("Index " + i + ": " + shapes.get(i));
-            }
-            
-            // DEBUGGING LINE - COMMENT OUT
-            System.out.println("Index " + i + ": " + shapes.get(i));
-        }
         
-        System.out.println("Sorting Time: " + (endTime - startTime) / 1e6 + " ms");
+        if(displaySorted == true) {
+	        // Print only: first, every 1000th, and the last sorted shape
+	        System.out.println("Selected Sorted Shapes (first element, every 1000th, and last element):");
+	        int size = shapes.size();
+	        for (int i = 0; i < size; i++) {
+	            if (i == 0 || i % 1000 == 0 || i == size - 1) {
+	                System.out.println("Index " + i + ": " + shapes.get(i));
+	            }
+	            
+	            // DEBUGGING LINE - COMMENT OUT
+	            //System.out.println("Index " + i + ": " + shapes.get(i));
+	        }
+	        
+	        System.out.println("Sorting Time: " + (endTime - startTime) / 1e6 + " ms");
+        }
     }
     
     private static List<Shape> loadShapesFromFile(String fileName) {
@@ -158,7 +165,7 @@ public class AppDriver {
             case 'm': SortUtility.mergeSort(shapes, comparator); break;
             case 'q': SortUtility.quickSort(shapes, 0, shapes.size() - 1, comparator); break;
             case 'h': SortUtility.heapSort(shapes, comparator); break;
-            default: System.out.println("Invalid sorting type.");
+            default: break;
         }
     }
 }
