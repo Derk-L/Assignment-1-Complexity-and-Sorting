@@ -61,12 +61,12 @@ public class AppDriver {
         // Incorrect command lines display message to user
         if(compareType != 'h' && compareType != 'a' && compareType != 'v' ) 
         {
-        	System.out.println("The compare type " + compareType + "is not a valid option.");
+        	System.out.println("The compare type " + compareType + " is not a valid option. Valid options are Height (h), base area (a), volume (v).");
         }
         
         if(sortType != 'b' && sortType != 's' && sortType != 'i' && sortType != 'm' && sortType != 'q' && sortType != 'h') 
         {
-        	System.out.println("The sort type " + sortType + " is not a valid option.");
+        	System.out.println("The sort type " + sortType + " is not a valid option. Valid options are Bubble (b), Selection (s), Insertion (i), Merge (m), Quick (q), Heap (z).");
         }
         
         // Load shapes from file
