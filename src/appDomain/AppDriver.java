@@ -58,6 +58,17 @@ public class AppDriver {
             return;
         }
         
+        // Incorrect command lines display message to user
+        if(compareType != 'h' && compareType != 'a' && compareType != 'v' ) 
+        {
+        	System.out.println("The compare type " + compareType + "is not a valid option.");
+        }
+        
+        if(sortType != 'b' && sortType != 's' && sortType != 'i' && sortType != 'm' && sortType != 'q' && sortType != 'h') 
+        {
+        	System.out.println("The sort type " + sortType + " is not a valid option.");
+        }
+        
         // Load shapes from file
         List<Shape> shapes = loadShapesFromFile(fileName);
         if (shapes.isEmpty()) {
