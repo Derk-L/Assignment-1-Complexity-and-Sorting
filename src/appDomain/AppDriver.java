@@ -95,6 +95,9 @@ public class AppDriver {
             if (i == 0 || i % 1000 == 0 || i == size - 1) {
                 System.out.println("Index " + i + ": " + shapes.get(i));
             }
+            
+            // DEBUGGING LINE - COMMENT OUT
+            System.out.println("Index " + i + ": " + shapes.get(i));
         }
         
         System.out.println("Sorting Time: " + (endTime - startTime) / 1e6 + " ms");
@@ -105,7 +108,12 @@ public class AppDriver {
         try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
             String line;
             while ((line = br.readLine()) != null) {
-                shapes.add(parseShape(line));
+            	String[] parts = line.trim().split("\\s+");
+            	if (parts.length == 3) 
+            	{
+            		shapes.add(parseShape(line));
+            	}
+            	
             }
         } catch (IOException e) {
             System.out.println("Error reading file: " + e.getMessage());
