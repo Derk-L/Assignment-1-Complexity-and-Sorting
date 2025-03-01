@@ -2,10 +2,28 @@ package utilities;
  
 import java.util.Comparator;
 import java.util.List;
- 
+/**
+ * Utility class that provides sorting algorithms for sorting a list of elements.
+ * 
+ * Sorting Algorithms:
+ * - Bubble Sort
+ * - Selection Sort
+ * - Insertion Sort
+ * - Merge Sort
+ * - Quick Sort
+ * - Heap Sort
+ *
+ * @author Your Name
+ */
 public class SortUtility {
    
-    // Bubble Sort
+	/**
+     * Sorts the list using Bubble Sort.
+     *
+     * @param <T> The type of elements in the list.
+     * @param list The list to be sorted.
+     * @param comparator The comparator defining the sorting order.
+     */
     public static <T> void bubbleSort(List<T> list, Comparator<T> comparator) {
         int n = list.size();
         for (int i = 0; i < n - 1; i++) {
@@ -17,7 +35,13 @@ public class SortUtility {
         }
     }
  
-    // Selection Sort
+    /**
+     * Sorts the list using Selection Sort.
+     *
+     * @param <T> The type of elements in the list.
+     * @param list The list to be sorted.
+     * @param comparator The comparator defining sorting order.
+     */
     public static <T> void selectionSort(List<T> list, Comparator<T> comparator) {
         int n = list.size();
         for (int i = 0; i < n - 1; i++) {
@@ -31,7 +55,13 @@ public class SortUtility {
         }
     }
  
-    // Insertion Sort
+    /**
+     * Sorts the list using Insertion Sort.
+     *
+     * @param <T> The type of elements in the list.
+     * @param list The list to be sorted.
+     * @param comparator The comparator defining the sorting order.
+     */
     public static <T> void insertionSort(List<T> list, Comparator<T> comparator) {
         int n = list.size();
         for (int i = 1; i < n; i++) {
@@ -45,7 +75,13 @@ public class SortUtility {
         }
     }
  
-    // Merge Sort
+    /**
+     * Sorts the list using Merge Sort.
+     *
+     * @param <T> The type of elements in the list.
+     * @param list The list to be sorted.
+     * @param comparator The comparator defining the sorting order.
+     */
     public static <T> void mergeSort(List<T> list, Comparator<T> comparator) {
         if (list.size() < 2) return;
         int mid = list.size() / 2;
@@ -56,6 +92,15 @@ public class SortUtility {
         merge(list, left, right, comparator);
     }
    
+    /**
+     * Merges two sorted sublists into one sorted list.
+     *
+     * @param <T> The type of elements in the list.
+     * @param list The original list to be merged.
+     * @param left The left sublist.
+     * @param right The right sublist.
+     * @param comparator The comparator defining the sorting order.
+     */
     private static <T> void merge(List<T> list, List<T> left, List<T> right, Comparator<T> comparator) {
         int i = 0, j = 0, k = 0;
         while (i < left.size() && j < right.size()) {
@@ -69,7 +114,15 @@ public class SortUtility {
         while (j < right.size()) list.set(k++, right.get(j++));
     }
    
-    // Quick Sort
+    /**
+     * Sorts the list using Quick Sort.
+     *
+     * @param <T> The type of elements in the list.
+     * @param list The list to be sorted.
+     * @param low The starting index.
+     * @param high The ending index.
+     * @param comparator The comparator defining the sorting order.
+     */
     public static <T> void quickSort(List<T> list, int low, int high, Comparator<T> comparator) {
         if (low < high) {
             int pi = partition(list, low, high, comparator);
@@ -78,6 +131,16 @@ public class SortUtility {
         }
     }
    
+    /**
+     * Partitions the list for Quick Sort.
+     *
+     * @param <T> The type of elements in the list.
+     * @param list The list to be partitioned.
+     * @param low The starting index.
+     * @param high The ending index.
+     * @param comparator The comparator defining the sorting order.
+     * @return The partition index.
+     */
     private static <T> int partition(List<T> list, int low, int high, Comparator<T> comparator) {
         T pivot = list.get(high);
         int i = low - 1;
@@ -91,7 +154,13 @@ public class SortUtility {
         return i + 1;
     }
  
-    // Heap Sort
+    /**
+     * Sorts the list using Heap Sort.
+     *
+     * @param <T> The type of elements in the list.
+     * @param list The list to be sorted.
+     * @param comparator The comparator defining the sorting order.
+     */
     public static <T> void heapSort(List<T> list, Comparator<T> comparator) {
         int n = list.size();
         for (int i = n / 2 - 1; i >= 0; i--) heapify(list, n, i, comparator);
@@ -101,6 +170,15 @@ public class SortUtility {
         }
     }
    
+    /**
+     * Heapifies a subtree for Heap Sort.
+     *
+     * @param <T> The type of elements in the list.
+     * @param list The list to be heapified.
+     * @param n The size of the heap.
+     * @param i The root index.
+     * @param comparator The comparator defining the sorting order.
+     */
     private static <T> void heapify(List<T> list, int n, int i, Comparator<T> comparator) {
         int largest = i, left = 2 * i + 1, right = 2 * i + 2;
         if (left < n && comparator.compare(list.get(left), list.get(largest)) > 0) largest = left;
@@ -111,7 +189,14 @@ public class SortUtility {
         }
     }
  
-    // Swap function
+    /**
+     * Swaps two elements in the list.
+     *
+     * @param <T> The type of elements in the list.
+     * @param list The list containing the elements.
+     * @param i The index of the first element.
+     * @param j The index of the second element.
+     */
     private static <T> void swap(List<T> list, int i, int j) {
         T temp = list.get(i);
         list.set(i, list.get(j));

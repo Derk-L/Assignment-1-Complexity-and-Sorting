@@ -6,21 +6,12 @@ import utilities.SortUtility;
 import java.io.*;
 import java.util.*;
  
-//TODO Auto-generated method stub
- 
-        // refer to demo001 BasicFileIO.java for a simple example on how to
-        // read data from a text file
- 
-        // refer to demo01 Test.java for an example on how to parse command
-        // line arguments and benchmarking tests
- 
-        // refer to demo02 Student.java for comparable implementation, and
-        // NameCompare.java or GradeCompare for comparator implementations
- 
-        // refer to demo02 KittySort.java on how to use a custom sorting
-        // algorithm on a list of comparables to sort using either the
-        // natural order (comparable) or other orders (comparators)
- 
+/**
+ * Main method that handles command-line arguments, loads shapes, sorts them,
+ * and displays the results.
+ *
+ * @param args Command-line arguments (-fres/filename -t<compareType> -s<sortType>)
+ */
 public class AppDriver {
     public static void main(String[] args) {
         // Variables to hold command-line inputs
@@ -110,6 +101,12 @@ public class AppDriver {
         }
     }
     
+    /**
+     * Reads a file and loads shape data into a list.
+     *
+     * @param fileName The name of the file containing shape data.
+     * @return A list of Shape objects.
+     */
     private static List<Shape> loadShapesFromFile(String fileName) {
         List<Shape> shapes = new ArrayList<>();
         try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
@@ -128,6 +125,13 @@ public class AppDriver {
         return shapes;
     }
     
+    /**
+     * Parses a line of shape data and creates a corresponding Shape object.
+     *
+     * @param line A string representing a shape (e.g., "Cone 29639.64 29106.68").
+     * @return A Shape object corresponding to the parsed line.
+     * @throws IllegalArgumentException If the shape type is unknown.
+     */
     private static Shape parseShape(String line) {
         String[] parts = line.trim().split("\\s+");
         if (parts.length < 3) {
@@ -148,15 +152,28 @@ public class AppDriver {
         }
     }
     
+    /**
+     * Returns the appropriate comparator for sorting based on the compare type.
+     *
+     * @param compareType The comparison type ('h' for height, 'a' for base area, 'v' for volume).
+     * @return A Comparator for sorting shapes, or null if an invalid type is provided.
+     */
     private static Comparator<Shape> getComparator(char compareType) {
         switch (compareType) {
             case 'h': return (s1, s2) -> Double.compare(s2.getHeight(), s1.getHeight());
-            case 'a': return new BaseAreaComparator();  // 'a' for area (base area)
+            case 'a': return new BaseAreaComparator();  
             case 'v': return new VolumeComparator();
             default:  return null;
         }
     }
     
+    /**
+     * Applies the selected sorting algorithm to the given list of shapes.
+     *
+     * @param shapes    The list of shapes to be sorted.
+     * @param sortType  The sorting algorithm type ('b', 's', 'i', 'm', 'q', 'h').
+     * @param comparator The comparator used to compare shapes.
+     */
     private static void applySortingAlgorithm(List<Shape> shapes, char sortType, Comparator<Shape> comparator) {
         switch (sortType) {
             case 'b': SortUtility.bubbleSort(shapes, comparator); break;
