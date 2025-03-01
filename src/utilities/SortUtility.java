@@ -13,7 +13,7 @@ import java.util.List;
  * - Quick Sort
  * - Heap Sort
  *
- * @author Your Name
+ * @author Group Riju
  */
 public class SortUtility {
    

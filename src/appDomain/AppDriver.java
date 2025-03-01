@@ -7,12 +7,31 @@ import java.io.*;
 import java.util.*;
  
 /**
- * Main method that handles command-line arguments, loads shapes, sorts them,
- * and displays the results.
+ * The main driver class for sorting and displaying shapes.
+ * 
+ * This program reads shape data from a file, sorts it based on the user's choice,
+ * and displays selected sorted values.
  *
- * @param args Command-line arguments (-fres/filename -t<compareType> -s<sortType>)
+ * Command Line Usage:
+ * java -jar Sort.jar -f<file_name> -t<compareType> -s<sortType>
+ *
+ * Example:
+ * java -jar Sort.jar -fshapes1.txt -Tv -Sb
+ *
+ * Valid options:
+ * - Compare type (-t): h (height), a (base area), v (volume)
+ * - Sort type (-s): b (bubble), s (selection), i (insertion), 
+ *                   m (merge), q (quick), h (heap)
+ *
+ * @author Group Riju
  */
 public class AppDriver {
+	/**
+     * Main method that handles command-line arguments, loads shapes, sorts them,
+     * and displays the results.
+     *
+     * @param args Command-line arguments (-f<file_name> -t<compareType> -s<sortType>)
+     */
     public static void main(String[] args) {
         // Variables to hold command-line inputs
         String fileName = null;
